@@ -6,10 +6,10 @@ LIRI functions like the iPhone’s SIRI. While, SIRI is a Speech Interpretation 
 
 The LIRI was designed to produce search results based on the following commands:
 
-node liri.js concert-this <insert artist name>
-node liri.js spotify-this-song <insert song name>
-node liri.js movie-this <insert movie name>
-node liri.js do-what-it-says 
+*node liri.js concert-this <insert artist name>
+*node liri.js spotify-this-song <insert song name>
+*node liri.js movie-this <insert movie name>
+*node liri.js do-what-it-says 
 
 The respective commands produced different search results as outlined below: 
 
