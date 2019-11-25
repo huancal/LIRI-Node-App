@@ -11,7 +11,7 @@ The LIRI was designed to produce search results based on the following commands:
 * node liri.js movie-this <insert movie name>
 * node liri.js do-what-it-says 
 
-####The respective commands produced different search results as outlined below: 
+The respective commands produced different search results as outlined below: 
 
 node liri.js concert-this “artist/band name”:
 - Name of venue
@@ -36,3 +36,17 @@ node liri.js movie-this “movie title”:
 
 node liri.js do-what-it-says
 - Print the spotify results for “I want it that way” stored in the random.txt file
+
+# Requirements to run LIRI
+
+The following need to be install before cloning the git repository 
+
+* A valid [Spotify](https://developer.spotify.com/documentation/web-api/) API key 
+* A valid [IMDB](http://www.omdbapi.com/) API Key
+* A valid [BANDS IN TOWN](https://www.artists.bandsintown.com/login) API Key
+* Install NPM [Axios](https://www.npmjs.com/package/axios)
+* Install NPM [Node-Spotify-API](https://www.npmjs.com/package/node-spotify-api)
+* Install NPM [DotEnv](https://www.npmjs.com/package/dotenv)
+* Install NPM [Moment](https://www.npmjs.com/package/moment)
+
+
