@@ -1,18 +1,10 @@
 require("dotenv").config();
 
 var keys = require('./keys')
-
 const axios = require("axios")
-
-// import fs package to read and write
 var fs = require('fs')
-
-
-
-
-// Import the node-spotify-api NPM package.
+var moment = require('moment')
 var Spotify = require("node-spotify-api");
-
 var spotify = new Spotify(keys.spotify);
 
 
@@ -20,11 +12,11 @@ var spotify = new Spotify(keys.spotify);
 
 var getBands = (artist) => {
 
-    const url = "https: //rest.bandsintown.com/artists/" + artist + "/events?app_id=codingbootcamp"
+    const url = "https://rest.bandsintown.com/artists/" + artist + "/events?app_id=codingbootcamp"
 
-    console.log(url);
+
     axios.get(url).then(res => {
-        console.log(res.data);
+        // console.log(res.data);
 
         if (!res.data.length) {
             console.log("No results found for " + artist);
@@ -32,19 +24,19 @@ var getBands = (artist) => {
         }
         for (var i = 0; i < res.data.length; i++) {
             var show = res.data[i];
-            console.log("Name of the Venue", show.venue.name);
-            console.log("Venue Location", show.venue.city);
-            console.log("Time", moment(show.datetime).format("MM/DD/YYYY"));
+            console.log("Name of the Venue: ", show.venue.name);
+            console.log("Venue Location: ", show.venue.city);
+            console.log("Time: ", moment(show.datetime).format("MM/DD/YYYY"));
         }
     });
 }
 
-// spotify-this-song
+// spotify-this-song command
 
 var getSpotify = (songName) => {
-    if (songName === undefined || ' ') {
-        songName === "The Sign: Ace of Base"
-    }
+    // if (songName === undefined || ' ') {
+    //     songName = "The Sign: Ace of Base"
+    // };
     spotify.search({
         type: 'track',
         query: songName,
@@ -52,46 +44,43 @@ var getSpotify = (songName) => {
         if (err) {
             return console.log('Error occurred: ' + err);
         }
-        // console.log(data);
+        console.log(data);
         var songs = data.tracks.items;
         for (var i = 0; i < songs.length; i++) {
-            console.log("ARTIST(S)" + (songs[i].artists[0].name));
-            console.log("song name: " + songs[i].name);
-            console.log("preview song: " + songs[i].preview_url);
-            console.log("album: " + songs[i].album.name);
+            console.log("ARTIST(S)" + (songs[i].artists[0].name + '\n'));
+            console.log("Song Name: " + songs[i].name + '\n');
+            console.log("Preview Song: " + songs[i].preview_url + '\n');
+            console.log("Album: " + songs[i].album.name + '\n');
 
         }
     });
+
 }
 
-// Movie name 
+// Movie-this command
 
 var getMovie = (movieName) => {
 
-    if (movieName === undefined || ' ') {
-        movieName === "Mr. Nobody"
-    }
+    // if (movieName === undefined || ' ') {
+    //     movieName = "Mr. Nobody"
+    // };
 
     var movieURL = "http://www.omdbapi.com/?t=" + movieName + "&y=&plot=short&tomatoes=true&apikey=trilogy";
 
-
     axios.get(movieURL).then(res => {
 
-        if (res.data.title === "Mr. Nobody") {
-            console.log("Its on Netflix!");
-        }
         console.log("Title of Movie: ", res.data.Title);
         console.log("Year: ", res.data.Year);
         console.log("IMDB Rating: ", res.data.imdbRating);
         console.log("Rotten Tomatoes: ", res.data.Ratings[1].Value);
-        console.log("Country: ", res.data.country);
-        console.log("Language: ", res.data.language);
-        console.log("Plot: ", res.data.plot);
-        console.log("Actors: ", res.data.actors);
+        console.log("Country: ", res.data.Country);
+        console.log("Language: ", res.data.Language);
+        console.log("Plot: ", res.data.Plot);
+        console.log("Actors: ", res.data.Actors);
     })
 }
 
-// do what it says 
+// do what it says command
 
 var doWhat = () => {
     fs.readFile('random.txt', 'utf8', function (err, data) {
@@ -99,14 +88,16 @@ var doWhat = () => {
 
         var dataArr = data.split(",");
         if (dataArr.length === 2) {
-            liriChat(dataArr[0], dataArr[1]);
+            liriCommmand(dataArr[0], dataArr[1]);
         } else if (dataArr.length === 1) {
-            liriChat(dataArr[0]);
+            liriCommmand(dataArr[0]);
         }
     });
 }
 
-var lirichat = (command, functionData) => {
+
+
+var liriCommmand = (command, functionData) => {
 
     switch (command) {
         case "concert-this":
@@ -122,17 +113,8 @@ var lirichat = (command, functionData) => {
             doWhat(functionData);
             break;
         default:
-            console.log("LIRI doesn't know that");
+            console.log("LIRI doesn't know that command");
     }
 };
 
-
-// MAIN PROCESS
-// =====================================
-
-console.log(process.argv[2]);
-console.log(process.argv[3]);
-
-
-
-lirichat(process.argv[2], process.argv.slice(3).join(" "));
+liriCommmand(process.argv[2], process.argv[3]);
