@@ -39,7 +39,7 @@ node liri.js do-what-it-says
 
 # Requirements to run LIRI
 
-The following need to be install before cloning the git repository 
+The following need to be install before cloning the repository 
 
 * A valid [Spotify](https://developer.spotify.com/documentation/web-api/) API key 
 * A valid [IMDB](http://www.omdbapi.com/) API Key
@@ -48,5 +48,17 @@ The following need to be install before cloning the git repository
 * Install NPM [Node-Spotify-API](https://www.npmjs.com/package/node-spotify-api)
 * Install NPM [DotEnv](https://www.npmjs.com/package/dotenv)
 * Install NPM [Moment](https://www.npmjs.com/package/moment)
+
+**IMPORTANT: PLEASE CREATE AND COMPILE YOUR OWN API KEYS IN THE ROOT FOLDER ENCLOSED BY .env with the following code**
+
+```
+# Spotify API keys
+
+SPOTIFY_ID=your-spotify-id
+SPOTIFY_SECRET=your-spotify-secret
+# IMDB API keys
+
+IMDB_KEY=your-IMDB-api-key
+```
 
 
